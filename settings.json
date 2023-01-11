@@ -1,0 +1,9 @@
+{
+    "username": "1367758",
+    "password": "yd7dgvke",
+    "server": "AMPGlobalUSA-Demo",
+    "mt5Pathway": "C:/Program Files/MetaTrader 5/terminal64.exe",
+    "symbols": ["ENQH23"],
+    "timeframe": "M5",
+    "pip_size": 0.25
+}
