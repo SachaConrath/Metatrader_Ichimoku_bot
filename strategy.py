@@ -46,7 +46,7 @@ def get_and_transform_mt5_data(symbol, timeframe, number_of_candles, pip_size):
 
 def add_indicator(df_data):
     ichimoku = ta.ichimoku(df_data['high'], df_data['low'], df_data['close'],9,26,52)
-    ma = ta.sma(df_data['close'],200)
+    ma = ta.ema(df_data['close'],200)
     atr = ta.atr(df_data['high'], df_data['low'], df_data['close'],4)
     df_data = pandas.concat([df_data, ichimoku[0], ichimoku[1], ma, atr], axis=1)
     return df_data
@@ -90,9 +90,9 @@ def make_decision(data_df):
     # print("Close_Above_Cloud :", Close_Above_Cloud)
     Close_Under_Cloud = data_df['close'].iloc[-27] <= data_df['ISB_26'].iloc[-27][0] and data_df['close'].iloc[-27] <= data_df['ISA_9'].iloc[-27][0]
     # print("Close_Under_Cloud :", Close_Under_Cloud)
-    close_Above_MA = data_df['close'].iloc[-27] > data_df['SMA_200'].iloc[-27]
+    close_Above_MA = data_df['close'].iloc[-27] > data_df['EMA_200'].iloc[-27]
     # print("close_Above_MA :", close_Above_MA)
-    Close_Under_MA =  data_df['close'].iloc[-27] < data_df['SMA_200'].iloc[-27]
+    Close_Under_MA =  data_df['close'].iloc[-27] < data_df['EMA_200'].iloc[-27]
     # print("Close_Under_MA :", Close_Under_MA)
     #Short
     if Close_Under_MA and CrossDown_TK and Close_Under_Cloud and Projected_Cloud == "Red" and Back_Price == "Under":
